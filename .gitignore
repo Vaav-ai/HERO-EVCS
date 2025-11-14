@@ -1,0 +1,48 @@
+
+# Cache directories
+cache/
+*.cache
+__pycache__/
+.pytest_cache/
+.history/
+# Keep model directory structure
+!models/.gitkeep
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+results/
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Stog
+Thumbs.db
+
+# Environment
+.env
+.venv
+venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+

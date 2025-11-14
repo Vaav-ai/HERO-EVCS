@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  hero-evcs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hero-evcs:latest
+    container_name: hero-evcs
+    volumes:
+      # Mount data directory (read-only for input data)
+      - ./data:/app/data:ro
+      # Mount results directory (read-write for outputs)
+      - ./results:/app/results
+      # Mount generated files directory (read-write for SUMO network files)
+      - ./generated_files:/app/generated_files
+      # Mount cache directory (read-write for caching)
+      - ./cache:/app/cache
+    environment:
+      - SUMO_HOME=/usr/share/sumo
+      - PYTHONPATH=/usr/share/sumo/tools
+    # Default command - override with docker-compose run
+    command: python3 main.py --help
+    # Remove container after execution
+    restart: "no"
+    
+  # Example service for quick test
+  hero-evcs-test:
+    extends: hero-evcs
+    container_name: hero-evcs-test
+    command: >
+      python3 main.py
+      --city "Singapore"
+      --total-stations 5
+      --max-episodes 5
+      --output-dir /app/results
+
+
+
